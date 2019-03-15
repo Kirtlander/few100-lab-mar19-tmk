@@ -1,10 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Webpack Showcase</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Tip Calculator</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
 </head>
-<body>
-    <h1>Welcome to Class.</h1>
+
+<body class="container">
+    <h1 class="page-header">Tip Calculator</h1>
+    <form id="tip-form">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text"
+                       for="tip-amount-input"
+                       class="sr-only">$</label>
+
+            </div>
+            <input type="number"
+                   id="tip-amount-input"
+                   class="form-control"
+                   placeholder="Enter the tip amount"
+                   required
+                   autofocus>
+        </div>
+
+        <div id="tip-percent-group"
+             class="input-group mb-3">
+            <div class="btn-group input-group-prepend">
+                <button type="button"
+                        data-tip-percent="10"
+                        class="btn btn-secondary">10%</button>
+                <button type="button"
+                        data-tip-percent="15"
+                        class="btn btn-secondary">15%</button>
+                <button type="button"
+                        data-tip-percent="20"
+                        class="btn btn-secondary"
+                        disabled>20%</button>
+            </div>
+            <input type="number"
+                   id="tip-percentage-input"
+                   min="0"
+                   class="form-control"
+                   placeholder="Enter a custom tip percentage"
+                   autofocus>
+
+        </div>
+        <p id="tip-message">You are tipping 20%</p>
+
+    </form>
+    <section id="results">
+        <div class="form-control">Bill Amount: <span id="bill-amount">$100.00</span></div>
+        <div class="form-control">Tip Percentage: <span id="tip-percentage">20%</span></div>
+        <div class="form-control">Amount of tip: <span id="tip-amount">$20.00</span></div>
+        <div class="form-control"><em>Total to be Paid: <span id="total-amount">$120.00</span></em></div>
+    </section>
 </body>
+
 </html>
