@@ -5,8 +5,8 @@ const storage = localStorage;
 const fixedTipPercentOptions = [10, 15, 20];
 
 const checkAmountInput = document.getElementById("check-amount-input") as HTMLInputElement;
-const tipPercentGroup = document.getElementById("tip-percent-group");
-const fixedTipButtons = document.querySelectorAll("#tip-percent-group .btn");
+const tipPercentGroup = document.getElementById("fixed-tip-percent-group") as HTMLDivElement;
+let fixedTipButtons: NodeListOf<HTMLButtonElement>;
 const customTipInput = document.getElementById("tip-percentage-input") as HTMLInputElement;
 
 const checkAmountOutput = document.getElementById("check-amount");
@@ -51,14 +51,12 @@ class Tip {
 function checkAmountChanged(e: any) {
     const el = e.currentTarget as HTMLInputElement;
     tip.checkAmount = +el.value || 0;
-    storage.setItem("checkAmount", tip.checkAmount.toString());
     updateUi();
 }
 
 function fixedTipButtonClicked(e: any) {
     const el = e.currentTarget;
     tip.tipPercent = +el.dataset["tipPercent"];
-    el.value = tip.tipPercent;
     customTipInput.value = "";
     storage.setItem("tipPercent", tip.tipPercent.toString());
     updateButtonStatus();
@@ -86,10 +84,16 @@ function updateButtonStatus() {
     });
 }
 
-function wireUpEvents() {
-    fixedTipButtons.forEach(btn => {
-        btn.addEventListener('click', fixedTipButtonClicked);
+function setupUi() {
+    fixedTipPercentOptions.forEach(opt => {
+        const button = document.createElement("button");
+        button.classList.add("btn", "btn-secondary");
+        button.dataset.tipPercent = opt.toString();
+        button.innerText = format.percentage(opt);
+        tipPercentGroup.appendChild(button);
+        button.addEventListener('click', fixedTipButtonClicked);
     });
+    fixedTipButtons = document.querySelectorAll("#tip-percent-group .btn") as NodeListOf<HTMLButtonElement>;
     customTipInput.addEventListener("input", customTipPercentChanged);
     checkAmountInput.addEventListener("input", checkAmountChanged);
 }
@@ -125,10 +129,9 @@ function updateUi() {
 export function init() {
 
     const tipPercent = +localStorage.getItem("tipPercent");
-    const checkAmount = +localStorage.getItem("checkAmount");
-    tip = new Tip(tipPercent, checkAmount);
+    tip = new Tip(tipPercent);
 
-    wireUpEvents();
+    setupUi();
     updateUi();
     updateButtonStatus();
 
