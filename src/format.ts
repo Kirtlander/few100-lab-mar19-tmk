@@ -1,9 +1,12 @@
 
+const percentageFormat = new Intl.NumberFormat('en-US', { style: 'percent' });
+const currencyFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', useGrouping: true });
+
 /** Formats a fractional amount as a percentage */
 export function percentage(value: number = 0): string {
-    return `${value}%`;
+    return percentageFormat.format(value / 100); // `${value}%`;
 }
 
 export function currency(value: number = 0): string {
-    return `$${value}`;
+    return currencyFormat.format(value); // `$${value}`;
 }

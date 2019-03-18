@@ -20,16 +20,19 @@
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <label class="input-group-text"
-                       for="tip-amount-input"
+                       for="check-amount-input"
                        class="sr-only">$</label>
 
             </div>
             <input type="number"
-                   id="tip-amount-input"
+                   id="check-amount-input"
                    class="form-control"
-                   placeholder="Enter the tip amount"
+                   placeholder="Enter the check amount"
                    required
                    autofocus>
+            <div class="invalid-feedback">
+                Please provide positive numeric amount
+            </div>
         </div>
 
         <div id="tip-percent-group"
@@ -43,8 +46,7 @@
                         class="btn btn-secondary">15%</button>
                 <button type="button"
                         data-tip-percent="20"
-                        class="btn btn-secondary"
-                        disabled>20%</button>
+                        class="btn btn-secondary">20%</button>
             </div>
             <input type="number"
                    id="tip-percentage-input"
@@ -52,16 +54,18 @@
                    class="form-control"
                    placeholder="Enter a custom tip percentage"
                    autofocus>
-
+            <div class="invalid-feedback">
+                Please provide positive numeric amount
+            </div>
         </div>
-        <p id="tip-message">You are tipping 20%</p>
+        <p id="tip-message">You are tipping <span id="tip-percentage-message-amount"></span></p>
 
     </form>
     <section id="results">
-        <div class="form-control">Bill Amount: <span id="bill-amount">$100.00</span></div>
-        <div class="form-control">Tip Percentage: <span id="tip-percentage">20%</span></div>
-        <div class="form-control">Amount of tip: <span id="tip-amount">$20.00</span></div>
-        <div class="form-control"><em>Total to be Paid: <span id="total-amount">$120.00</span></em></div>
+        <div class="form-control">Bill Amount: <span id="check-amount"></span></div>
+        <div class="form-control">Tip Percentage: <span id="tip-percentage"></span></div>
+        <div class="form-control">Amount of tip: <span id="tip-amount"></span></div>
+        <div class="form-control"><em>Total to be Paid: <span id="total-amount"></span></em></div>
     </section>
 </body>
 
