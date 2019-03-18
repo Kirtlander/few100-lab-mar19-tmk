@@ -1,5 +1,5 @@
 
-const percentageFormat = new Intl.NumberFormat('en-US', { style: 'percent' });
+const percentageFormat = new Intl.NumberFormat('en-US', { style: 'percent', maximumFractionDigits: 10 });
 const currencyFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', useGrouping: true });
 
 /** Formats a fractional amount as a percentage */

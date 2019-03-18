@@ -18,7 +18,7 @@ const totalAmountOutput = document.getElementById("total-amount");
 
 let tip: Tip;
 
-class Tip {
+export class Tip {
 
     get isValid(): boolean {
         return this.checkAmountIsValid && this.tipPercentIsValid;
@@ -44,7 +44,7 @@ class Tip {
             : 0;
     }
 
-    constructor(public tipPercent: number = 20, public checkAmount: number = 0) {
+    constructor(public tipPercent: number = 20, public checkAmount: number = 0, public split = 1) {
     }
 }
 
